@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/src/style.scss" />
+    <title>Navigation Menu</title>
+  </head>
+  <body>
+    <header class="header" data-navigationmenu="">
+      <div class="overlay hasFade"></div>
+      <nav class="nav">
+        <div class="logo">
+          <a href="/">
+            <h1>NavigationMenu</h1>
+          </a>
+        </div>
+        <div data-hamburgermenubutton="">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </nav>
+      <div class="menu hasFade">
+        <ul>
+          <li>
+            <a href="/">Home</a>
+          </li>
+          <li>
+            <a href="/">About us</a>
+          </li>
+          <li>
+            <a href="/">Contact</a>
+          </li>
+        </ul>
+      </div>
+    </header>
+    <script type="module" src="/src/index.ts"></script>
+  </body>
+</html>

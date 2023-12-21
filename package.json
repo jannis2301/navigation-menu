@@ -1,0 +1,31 @@
+{
+  "name": "navigation-menu",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "start": "vite --host",
+    "test": "vitest run",
+    "test:unit": "vitest run --coverage",
+    "coverage": "vitest run --coverage",
+    "build": "tsc && vite build"
+  },
+  "devDependencies": {
+    "@vitest/coverage-istanbul": "^1.1.0",
+    "happy-dom": "^12.10.3",
+    "sass": "^1.69.5",
+    "typescript": "^5.2.2",
+    "vite": "^5.0.8",
+    "vite-plugin-dts": "^3.6.4",
+    "vitest": "^1.1.0"
+  },
+  "files": [
+    "./dist"
+  ],
+  "exports": {
+    ".": {
+      "types": "./dist/types/index.d.ts",
+      "default": "./dist/navigation-menu.js"
+    }
+  }
+}
