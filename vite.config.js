@@ -2,11 +2,10 @@ import { defineConfig } from 'vite';
 import dts from 'vite-plugin-dts';
 
 export default defineConfig({
-  base: '/navigation-menu/',
   build: {
     sourcemap: true,
     lib: {
-      entry: '.src/index.ts',
+      entry: './src/index.ts',
       formats: ['es'],
     },
   },
