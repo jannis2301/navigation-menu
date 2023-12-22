@@ -65,7 +65,7 @@ export class NavigationMenu {
     }
   }
 
-  private init(): void {
+  private addEventListeners(): void {
     this.hamburgerMenuButton.addEventListener(
       'click',
       this.toggleHamburgerMenu
@@ -78,22 +78,29 @@ export class NavigationMenu {
       'keydown',
       this.closeMenuOnClickOutside
     );
+  }
 
+  private removeEventListeners(): void {
+    this.hamburgerMenuButton.removeEventListener(
+      'click',
+      this.toggleHamburgerMenu
+    );
+    this.hamburgerMenuButton.removeEventListener(
+      'keydown',
+      this.toggleHamburgerMenu
+    );
+    this.hamburgerMenuButton.removeEventListener(
+      'keydown',
+      this.closeMenuOnClickOutside
+    );
+  }
+
+  private init(): void {
     this.addAttributesToMenuButton();
+    this.addEventListeners();
   }
 
   public destroy(): void {
-    this.hamburgerMenuButton.removeEventListener(
-      'click',
-      this.toggleHamburgerMenu
-    );
-    this.hamburgerMenuButton.removeEventListener(
-      'keydown',
-      this.toggleHamburgerMenu
-    );
-    this.hamburgerMenuButton.removeEventListener(
-      'keydown',
-      this.closeMenuOnClickOutside
-    );
+    this.removeEventListeners();
   }
 }
