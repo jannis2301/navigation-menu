@@ -1,4 +1,4 @@
-import { getElementBySelector, getElementsBySelectorAll } from 'utils';
+import { getElementBySelector, getElementsBySelectorAll } from './utils';
 
 export class NavigationMenu {
   private el: HTMLElement;
