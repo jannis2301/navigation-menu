@@ -79,7 +79,7 @@ h1 {
 
   // Hamburger Open Styles
   &.openMenu {
-    [data-hamburgerbutton] {
+    [data-hamburgermenubutton] {
       > span:first-child {
         transform: rotate(45deg);
       }
@@ -109,7 +109,7 @@ h1 {
   color: inherit;
 }
 
-[data-hamburgerbutton] {
+[data-hamburgermenubutton] {
   //Mobile Menu Toggle
   position: relative;
   cursor: pointer;

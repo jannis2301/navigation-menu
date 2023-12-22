@@ -1,5 +1,5 @@
 import { describe, expect, it, beforeEach, afterEach } from 'vitest';
-import { getElementBySelector } from './utils';
+import { getElementBySelector, getElementsBySelectorAll } from './utils';
 import { NavigationMenu } from './NavigationMenu';
 
 describe('NavigationMenu', () => {
@@ -37,6 +37,80 @@ describe('NavigationMenu', () => {
 
     expect(hamburgerMenuButton.getAttribute('role')).toBe('button');
     expect(hamburgerMenuButton.getAttribute('tabindex')).toBe('0');
-    expect(hamburgerMenuButton.classList.contains('openMenu')).toBe(true);
+  });
+
+  describe('mouse events', () => {
+    it('should add fadeIn class to fadeInElements', async () => {
+      const { navigationMenuContainer } = navigationMenu;
+      const hamburgerMenuButton = getElementBySelector<HTMLElement>(
+        '[data-hamburgermenubutton]'
+      );
+      const fadeElements = getElementsBySelectorAll<HTMLElement>('.hasFade');
+
+      expect(navigationMenuContainer.classList.contains('openMenu')).toBe(
+        false
+      );
+      for (const element of fadeElements) {
+        expect(element.classList.contains('fadeIn')).toBe(false);
+        expect(element.classList.contains('fadeIn')).toBe(false);
+      }
+      await hamburgerMenuButton.click();
+
+      expect(navigationMenuContainer.classList.contains('openMenu')).toBe(true);
+      for (const element of fadeElements) {
+        expect(element.classList.contains('fadeIn')).toBe(true);
+        expect(element.classList.contains('fadeOut')).toBe(false);
+      }
+      await hamburgerMenuButton.click();
+
+      expect(navigationMenuContainer.classList.contains('openMenu')).toBe(
+        false
+      );
+      for (const element of fadeElements) {
+        expect(element.classList.contains('fadeIn')).toBe(false);
+        expect(element.classList.contains('fadeOut')).toBe(true);
+      }
+    });
+  });
+
+  describe('keyboard events', () => {
+    it('should open menu by pressing Enter & close by pressing Escape', async () => {
+      const { navigationMenuContainer } = navigationMenu;
+      const hamburgerMenuButton = getElementBySelector<HTMLElement>(
+        '[data-hamburgermenubutton]'
+      );
+
+      expect(navigationMenuContainer.classList.contains('openMenu')).toBe(
+        false
+      );
+      await hamburgerMenuButton.focus();
+      await hamburgerMenuButton.dispatchEvent(
+        new KeyboardEvent('keydown', { key: 'Enter' })
+      );
+
+      expect(navigationMenuContainer.classList.contains('openMenu')).toBe(true);
+
+      await hamburgerMenuButton.dispatchEvent(
+        new KeyboardEvent('keydown', { key: 'Escape' })
+      );
+
+      expect(navigationMenuContainer.classList.contains('openMenu')).toBe(
+        false
+      );
+    });
+  });
+
+  it('should remove event listeners, when destroy method is called', async () => {
+    const { navigationMenuContainer } = navigationMenu;
+    const hamburgerMenuButton = getElementBySelector<HTMLElement>(
+      '[data-hamburgermenubutton]'
+    );
+
+    expect(navigationMenuContainer.classList.contains('openMenu')).toBe(false);
+    navigationMenu.destroy();
+
+    await hamburgerMenuButton.click();
+
+    expect(navigationMenuContainer.classList.contains('openMenu')).toBe(false);
   });
 });

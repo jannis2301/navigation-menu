@@ -1,4 +1,4 @@
-import { getElementBySelector, getElementsBySelectorAll } from './utils';
+import { getElementBySelector, getElementsBySelectorAll } from 'utils';
 
 export class NavigationMenu {
   private el: HTMLElement;
@@ -21,8 +21,11 @@ export class NavigationMenu {
     this.init();
   }
 
-  private updateMenuButton() {
-    this.hamburgerMenuButton.classList.add('openMenu');
+  get navigationMenuContainer(): HTMLElement {
+    return this.el;
+  }
+
+  private addAttributesToMenuButton() {
     this.hamburgerMenuButton.setAttribute('role', 'button');
     this.hamburgerMenuButton.setAttribute('tabindex', '0');
   }
@@ -76,7 +79,7 @@ export class NavigationMenu {
       this.closeMenuOnClickOutside
     );
 
-    this.updateMenuButton();
+    this.addAttributesToMenuButton();
   }
 
   public destroy(): void {
